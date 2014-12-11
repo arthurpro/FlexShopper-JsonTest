@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JsonTest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bootswatch/lumen/bootstrap.min.css" media="screen">
+    <!--link rel="stylesheet" href="/bootswatch/assets/css/bootswatch.min.css"-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/bootswatch/bower_components/html5shiv/dist/html5shiv.js"></script>
+    <script src="/bootswatch/bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+    <meta name="description" content="FlexShopper Developer Employment Test">
+    <style media="all" type="text/css">
+        table a, .table a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<?php //var_dump($this->data['flash']);?>
+<script src="/bootswatch/assets/js/bsa.js"></script>
+<div class="container">
+    <div class="page-header">
+        <h1>JsonTest <span class="lead">&mdash; FlexShopper Developer Employment Test</span></h1>
+    </div>
+    <?php if (!empty($this->data['flash'])): ?>
+        <?php foreach ($this->data['flash'] as $severity => $message): ?>
+    <div class="alert alert-dismissable alert-warning">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h4>Warning!</h4>
+        <p><?php echo $message ?></p>
+    </div>
+        <?php endforeach ?>
+    <?php endif ?>
+    <?php $items = $this->getData('items'); if (!empty($items)): ?>
+    <div class="row">
+        <div class="col-lg-3">
+            </div>
+        <div class="col-lg-6">
+            <?php $sort = $this->getData('sort')?>
+            <table class="table table-striped table-hover ">
+                <thead>
+                <tr>
+                    <th><a href="#" onclick="return false;" class="btn btn-link btn-xs disabled">#</a></th>
+                    <th><a href="?key=FName" class="btn btn-link btn-xs<?php if ($sort['key'] == 'FName'): ?> disabled<?php endif ?>">First Name</a>
+                        <a href="?key=FName&order=asc" class="btn btn-link btn-xs<?php if ($sort['key'] == 'FName' && $sort['order'] == 'ASC'):?> disabled<?php endif ?>">&#9650;</a><a href="?key=FName&order=desc" class="btn btn-link btn-xs<?php if ($sort['key'] == 'FName' && $sort['order'] == 'DESC'):?> disabled<?php endif ?>">&#9660;</a></th>
+                    <th><a href="?key=LName" class="btn btn-link btn-xs<?php if ($sort['key'] == 'LName'): ?> disabled<?php endif ?>">Last Name</a>
+                        <a href="?key=LName&order=asc" class="btn btn-link btn-xs<?php if ($sort['key'] == 'LName' && $sort['order'] == 'ASC'):?> disabled<?php endif ?>">&#9650;</a><a href="?key=LName&order=desc" class="btn btn-link btn-xs<?php if ($sort['key'] == 'LName' && $sort['order'] == 'DESC'):?> disabled<?php endif ?>">&#9660;</a></th>
+                    <th><a href="?key=Age" class="btn btn-link btn-xs<?php if ($sort['key'] == 'Age'): ?> disabled<?php endif ?>">Age</a>
+                        <a href="?key=Age&order=asc" class="btn btn-link btn-xs<?php if ($sort['key'] == 'Age' && $sort['order'] == 'ASC'):?> disabled<?php endif ?>">&#9650;</a><a href="?key=Age&order=desc" class="btn btn-link btn-xs<?php if ($sort['key'] == 'Age' && $sort['order'] == 'DESC'):?> disabled<?php endif ?>">&#9660;</a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->getData('items') as $id => $item): //var_dump($item)?>
+                <tr>
+                    <td><?php echo $id+1 ?></td>
+                    <td><?php echo $item->getFName() ?></td>
+                    <td><?php echo $item->getLName() ?></td>
+                    <td><?php echo $item->getAge() ?></td>
+                </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-3">
+        </div>
+    </div>
+    <?php endif ?>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/bootswatch/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+    $('[data-toggle="popover"]').popover();
+</script>
+<!--script src="/bootswatch/assets/js/bootswatch.js"></script-->
+</body>
+</html>
